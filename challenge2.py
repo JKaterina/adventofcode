@@ -42,12 +42,53 @@ print(data['p2 final score'].sum())
 ### PART 2
 ### NEW DECISION RULE FOR THE WINNING PARTY ###
 new_rule_dict = {'X': 0, 'Y': 3, 'Z': 6}
+# X -> loss -> the response should be A-3 B-1 C-2
+# Y -> draw -> the response should be A-1 B-2 C-3
+# Z -> win -> the response should be A-2 B-3 C-1
+
+# based on p1 scores...
+# X -> loss -> the response should be 1-3 2-1 3-2
+# Y -> draw -> the response should be 1-1 2-2 3-3
+# Z -> win -> the response should be 1-2 2-3 3-1
+
+# determine the new choice of response
+# check p2 (z) -> check p2 (c) -> response
+# new_dict = {'X': [3, 1, 2], 'Y': [1, 2, 3], 'Z': [2, 3, 1]}
+
+def new_element_choice(p1, p2):
+    if p2 == 'X':
+        if p1 == 'A':
+            return 3
+        elif p1 == 'B':
+            return 1
+        else:
+            return 2
+
+    elif p2 == 'Y':
+        if p1 == 'A':
+            return 1
+        elif p1 == 'B':
+            return 2
+        else:
+            return 3
+
+    else:
+        if p1 == 'A':
+            return 2
+        elif p1 == 'B':
+            return 3
+        else:
+            return 1
+
+data['p2 new element choice'] = data.apply(lambda x: new_element_choice(x['Player 1'], x['Player 2']), axis=1)
+
+print(data.head())
 
 # map the new rule
 data['p2 score new rule'] = data['Player 2'].map(new_rule_dict)
 
 # calculate the new player 2 score
-data['p2 new total score'] = data['p2 score'] + data['p2 score new rule']
+data['p2 new total score'] = data['p2 new element choice'] + data['p2 score new rule']
 
 print(data.head())
 
