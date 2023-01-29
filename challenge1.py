@@ -24,5 +24,6 @@ print(max(all_sums))
 
 # sort the list of all sums and take the top 3
 top_sums = sorted(all_sums, reverse = True)
+
 # find the sum of the top three
 print(sum(top_sums[:3]))
