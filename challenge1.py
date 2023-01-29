@@ -14,14 +14,15 @@ b = [int(s) if s.isdigit() else '' for s in a]
 from itertools import groupby
 res = [list(sub) for ele, sub in groupby(b, key = bool) if ele]
 
-### CHALLENGE 1: FIND THE HIGHEST SUM ###
+### PART 1: FIND THE HIGHEST SUM ###
 
 # sum all elements in each sublist and find the highest value
 all_sums = [sum(a_list) for a_list in res]
 print(max(all_sums))
 
-### CHALLENGE 2: FIND THE TOP THREE AND CALCULATE THEIR SUM ###
+### PART 2: FIND THE TOP THREE AND CALCULATE THEIR SUM ###
 
 # sort the list of all sums and take the top 3
 top_sums = sorted(all_sums, reverse = True)
+# find the sum of the top three
 print(sum(top_sums[:3]))
