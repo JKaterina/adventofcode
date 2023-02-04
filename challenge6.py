@@ -6,6 +6,7 @@ a_list = [*a]
 # check every 4 characters set
 # if set < 4 -> continue
 # else: stop and print set start
+
 set_start = 0
 for subset in a_list:
     
@@ -17,6 +18,7 @@ for subset in a_list:
         print(set_start+14)
         break
 
+# other solution
 for i in range(14, len(a_list)):
     s = set(a_list[(i-14):i])
     if len(s) == 14:
