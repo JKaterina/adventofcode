@@ -47,6 +47,8 @@ for line in data:
 
 #print(dir_dict)
 
+### PART 1 ###
+
 # only leave directories with at most 100,000
 dir_dict_sorted = {}
 
@@ -54,8 +56,22 @@ for k, v in dir_dict.items():
     if v <= 100000:
         dir_dict_sorted[k] = v
 
-print(sum(dir_dict_sorted.values()))
+print(f"The total size of all directories below 100,000 is {sum(dir_dict_sorted.values())}")
+
+### PART 2 ###
+
+# space missing for the upgrade
+missing_space = 30000000 - (70000000 - dir_dict["/main"])
 
 
+big_values = []
 
+# for k, v in dir_dict.items():
+#     if missing_space <= v:
+#         big_values.append(dir_dict[k])
 
+for dir in dir_dict:
+    if missing_space <= dir_dict[dir]:
+        big_values.append(dir_dict[dir])
+
+print(min(big_values))
